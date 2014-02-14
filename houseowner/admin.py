@@ -3,7 +3,7 @@ from houseowner.models import HouseOwner
 from Renter.models import RenterInfo
 # Register your models here.
 
-class RenterInline(admin.StackedInline):
+class RenterInline(admin.TabularInline):
     model = RenterInfo
     
 class HouseOwnerAdmin(admin.ModelAdmin):
