@@ -26,3 +26,4 @@ class RentDetails(models.Model):
     rent_given_date = models.DateField('Date on Rent Given')
     pay_inadvance = models.BooleanField()
     Paid_for_mounths = MultiSelectField(choices=Months_year)    
+    

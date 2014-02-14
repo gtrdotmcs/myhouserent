@@ -7,3 +7,5 @@ class RenterInfo(models.Model):
     rent_amount  = models.IntegerField(default=0)
     start_rent_date = models.DateField('Agreement started')
     end_rent_date = models.DateField('Agreement Ended')
+    def __unicode__(self):  # Python 3: def __str__(self):
+         return self.full_name
