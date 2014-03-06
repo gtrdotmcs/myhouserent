@@ -9,4 +9,5 @@ class RenterInline(admin.TabularInline):
 class HouseOwnerAdmin(admin.ModelAdmin):
     fields = ['Full_Name', 'No_of_renters', 'Houseownerjoinedthesite']
     inlines = [RenterInline]
+    
 admin.site.register(HouseOwner, HouseOwnerAdmin)
