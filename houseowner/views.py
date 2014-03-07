@@ -16,3 +16,7 @@ def detail(request, houseowner_id):
     houseowner = get_object_or_404(HouseOwner, pk=houseowner_id)
     return render(request, 'houseowner/details.html', {'houseowner': houseowner})
     #return HttpResponse("You're looking at poll %s." % houseowner_id)
+    
+def editdetails(request, houseowner_id):
+    houseowner = get_object_or_404(HouseOwner, pk=houseowner_id)
+    return render(request, 'renterinfo/Renterdetails.html', {'houseowner': houseowner})

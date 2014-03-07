@@ -1,20 +1,9 @@
-<<<<<<< HEAD
 {% if Houseowner_list %}
     <ul>
     {% for houseowner in Houseowner_list %}
-        <li><a href="{% url 'detail' houseowner.id %}">{{ houseowner.Full_Name }}</a></li>
+        <li><a href="{% url 'houseowner:detail' houseowner.id %}">{{ houseowner.Full_Name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>No polls are available.</p>
-=======
-{% if HouseOwner_list %}
-    <ul>
-    {% for houseowner in HouseOwner_list %}
-        <li><a href="/houseowner/{{ houseowner.id }}/">{{ houseowner.Full_Name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No houseowner are available.</p>
->>>>>>> fe47f3919c1d7d4d42e1fadbfa0968e18650adbe
 {% endif %}
