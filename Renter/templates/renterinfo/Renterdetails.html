@@ -1,9 +1,5 @@
 <h1>{{ renterinfo.full_name }}</h1>
 <ul>{% for renterdetails in renterinfo.rentdetails_set.all %}
-		<b> Rentes given on date :{{ renterdetails.rent_given_date }}</b>
-    			<li>{{ renterdetails.rent_amount }}</li>
-    			<li>{{ renterdetails.rent_given_date }}</li>
-    			<li>{{ renterdetails.pay_inadvance }}</li>
-    			<li>{{ renterdetails.Paid_for_mounths }}</li>
+		<li><a href="{% url 'Rentdetails:editrentdetails'  renterdetails.id %}">{{ renterdetails }}</a></li>
 		{% endfor %}
 </ul>
