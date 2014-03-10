@@ -5,9 +5,10 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from django.http import HttpResponse
-from houseowner.models import HouseOwner 
+from houseowner.models import HouseOwner
+from Renter.models import RenterInfo
     
-def editdetails(request, houseowner_id):
+def editdetails(request, renter_id):
     
-    houseowner = get_object_or_404(HouseOwner, pk=houseowner_id)
-    return render(request, 'renterinfo/Renterdetails.html', {'houseowner': houseowner})
+    renterinfo = get_object_or_404(RenterInfo, pk=renter_id)
+    return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo})

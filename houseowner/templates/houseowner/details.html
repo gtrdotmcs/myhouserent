@@ -1,6 +1,6 @@
 <h1>{{ houseowner.Full_Name }}</h1>
 <ul>
 {% for renter in houseowner.renterinfo_set.all %}
-    <li><a href="{% url 'Renter:editdetails'  houseowner.id %}">{{ renter }}</a></li>
+    <li><a href="{% url 'Renter:editdetails'  renter.id %}">{{ renter }}</a></li>
 {% endfor %}
 </ul>
