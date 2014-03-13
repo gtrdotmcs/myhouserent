@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'houseowner',
     'Renter',
     'Rentdetails',
+    'loginapp',
 )
 
 MIDDLEWARE_CLASSES = (

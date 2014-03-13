@@ -1,0 +1,12 @@
+<h1>{{ rentdetails.RID }}</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form action="{% url 'Rentdetails:submitrentdetails'  rentdetails.id %}" method="post">
+{% csrf_token %}
+<ul><b> Rentes given on date :{{ rentdetails.rent_given_date }}</b>
+    			<li>Amount:<input name="Amount" value="{{ rentdetails.rent_amount }}"/></li>
+    			<li>Date given:<input name="Dategiven" value="{{ rentdetails.rent_given_date }}"/></li>
+    			<li>payee in advance:<input name="pyeeadv" value="{{ rentdetails.pay_inadvance }}"/></li>
+    			<li>mounths:<input name="months" value="{{ rentdetails.Paid_for_mounths }}"/></li>
+<input type="submit" value="Sumbit" />
+</form>
+</ul>

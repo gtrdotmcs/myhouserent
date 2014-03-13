@@ -29,6 +29,13 @@ def submitrentdetails(request, rentdetail_id):
         print request.POST['Dategiven']
         print request.POST['pyeeadv']
         print request.POST['Amount']
+        
+        rentdetails.Paid_for_mounths = request.POST['months']
+        rentdetails.rent_given_date = request.POST['Dategiven']
+        rentdetails.pay_inadvance = request.POST['pyeeadv']
+        rentdetails.rent_amount = request.POST['Amount']
+        rentdetails.save()
+       
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
