@@ -4,7 +4,8 @@ import loginapp
 
 # maps urls
 urlpatterns = patterns('',
-    url(r'^$', 'loginapp.views.login_user'),
+    url(r'^login/$', 'loginapp.views.login_user'),
+     url(r'^logout/$', 'loginapp.views.logout_view'),
     #url(r'^HOspcf/(?P<houseowner_id>\d+)/$', views.detail, name='detail')
     
 )

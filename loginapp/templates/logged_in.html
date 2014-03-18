@@ -12,7 +12,7 @@ body{
 </head>
 <body>
 	{{ state }}
-	<form action="/login/" method="post">{% csrf_token %}
+	<form action="/user/login/" method="post">{% csrf_token %}
 		{% if next %}
 		<input type="hidden" name="next" value="{{ next }}" />
 		{% endif %}
@@ -23,5 +23,6 @@ body{
 
 		<input type="submit" value="Log In" />
 	</form>
+<a href="/user/logout/"> logout</a>	
 </body>
 </html>

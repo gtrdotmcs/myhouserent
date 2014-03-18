@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from Rentdetails.models import RentDetails
-    
+  
 def inforentdetails(request, rentdetail_id):
     rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
     return render(request, 'rentdetails/Rentdetail.html', {'rentdetails': rentdetails} )
