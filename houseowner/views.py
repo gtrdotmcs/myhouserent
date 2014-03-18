@@ -3,9 +3,9 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.http import HttpResponse
 from houseowner.models import HouseOwner 
-from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='/user/login/')
+#@login_required(login_url='/user/login/')
 def index(request):
     #latest_houseowner_list = HouseOwner.objects.order_by()
     #output = ', '.join([p.Full_Name for p in latest_houseowner_list])
@@ -14,7 +14,7 @@ def index(request):
     context = {'Houseowner_list': Houseowner_list}
     return render(request, 'houseowner/houseownerdetails.html', context)
 
-@login_required(login_url='/user/login/')
+#@login_required(login_url='/user/login/')
 def detail(request, houseowner_id):
     houseowner = get_object_or_404(HouseOwner, pk=houseowner_id)
     return render(request, 'houseowner/details.html', {'houseowner': houseowner})

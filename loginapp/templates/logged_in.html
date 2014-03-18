@@ -11,7 +11,11 @@ body{
 </style>
 </head>
 <body>
-	{{ state }}
+   	{% if user.is_authenticated %}
+   	<p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+	{% else %}
+   	<p>Welcome, new user. Please log in.</p>
+	{% endif %}
 	<form action="/user/login/" method="post">{% csrf_token %}
 		{% if next %}
 		<input type="hidden" name="next" value="{{ next }}" />
