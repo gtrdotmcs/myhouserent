@@ -7,10 +7,12 @@ from django.contrib.auth import authenticate, login, logout
 
 def login_user(request):
     username = password = ''
+#    state = "well o"
+    print request   
     if request.POST:
         username = request.POST.get('username')
         password = request.POST.get('password')
-
+#        state = "hell o"
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
@@ -21,11 +23,13 @@ def login_user(request):
 #         else:
 #             state = "Your username and/or password were incorrect."
 
+    print username,password,"here"
     return render(request, 'logged_in.html', {'username': username})
 
 def logout_view(request):
     logout(request)
 #    state = "logout success if you want you can log in below..."
     username = password = ''
+    print username,password,"herelogout"
     return render(request, 'logged_in.html',{'username': username})
     # Redirect to a success page.
