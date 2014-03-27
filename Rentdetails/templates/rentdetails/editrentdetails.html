@@ -1,3 +1,7 @@
+{% extends "header_templet.html" %}
+{% block title %}HouseOwner{% endblock %}
+
+{% block content %}
 <h1>{{ rentdetails.RID }}</h1>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form action="{% url 'Rentdetails:submitrentdetails'  rentdetails.id %}" method="post">
@@ -10,3 +14,4 @@
 <input type="submit" value="Sumbit" />
 </form>
 </ul>
+{% endblock %}

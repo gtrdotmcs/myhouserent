@@ -1,3 +1,7 @@
+{% extends "header_templet.html" %}
+{% block title %}HouseOwner{% endblock %}
+
+{% block content %}
 <h1>{{ rentdetails.RID }}</h1>
 <ul><b> Rentes given on date :{{ rentdetails.rent_given_date }}</b>
     			<li>{{ rentdetails.rent_amount }}</li>
@@ -6,3 +10,4 @@
     			<li>{{ rentdetails.Paid_for_mounths }}</li>
 <a href="{% url 'Rentdetails:editrentdetails'  rentdetails.id %}">edit</a>
 </ul>
+{% endblock %}

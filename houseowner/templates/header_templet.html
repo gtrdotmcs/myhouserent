@@ -1,19 +1,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <link rel="stylesheet" href="style.css" />
+    {% load staticfiles %}
+        <!-- Our CSS stylesheet file -->
+        <link rel="stylesheet" href='{% static "css/bootstrap.css" %}' />
+        <link rel="stylesheet" href='{% static "css/font-awesome.css" %}' />
     <title>{% block title %}My amazing site{% endblock %}</title>
    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 </head>
 
 <body>
     <div id="header">
-        {% block header %}
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li>
+           <!--   {% block header %} -->
+        <div class="navbar navbar-default">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="/houseowner/">MY Rentel Plan</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Houseowner</a></li>
+      <li><a href="#">Lets c</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Its info<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li class="dropdown-header">Dropdown header</li>
+          <li><a href="#">Separated link</a></li>
+          <li><a href="#">One more separated link</a></li>
         </ul>
-        {% endblock %}
+      </li>
+    </ul>
+  </div>
+</div>
+       <!-- {% endblock %} -->
     </div>
 
     <div id="content">

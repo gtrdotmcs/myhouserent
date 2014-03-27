@@ -1,5 +1,10 @@
+{% extends "header_templet.html" %}
+{% block title %}HouseOwner{% endblock %}
+
+{% block content %}
 <h1>{{ renterinfo.full_name }}</h1>
 <ul>{% for renterdetails in renterinfo.rentdetails_set.all %}
 		<li><a href="{% url 'Rentdetails:inforentdetails'  renterdetails.id %}">{{ renterdetails }}</a></li>
 		{% endfor %}
 </ul>
+{% endblock %}
