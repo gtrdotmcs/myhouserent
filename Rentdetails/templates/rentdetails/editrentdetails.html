@@ -3,7 +3,12 @@
 
 {% block content %}
 <h1>{{ rentdetails.RID }}</h1>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}
+<div class="alert alert-dismissable alert-danger">
+  <strong>Whop!</strong>
+  <p> {{ error_message }} </p>
+</div>
+{% endif %}
 <form action="{% url 'Rentdetails:submitrentdetails'  rentdetails.id %}" method="post">
 {% csrf_token %}
 <ul><b> Rentes given on date :{{ rentdetails.rent_given_date }}</b>
