@@ -7,7 +7,10 @@
     			<li>{{ rentdetails.rent_amount }}</li>
     			<li>{{ rentdetails.rent_given_date }}</li>
     			<li>{{ rentdetails.pay_inadvance }}</li>
-    			<li>{{ rentdetails.Paid_for_mounths }}</li>
+    			<li>{% for months in rentdetails.Paid_for_mounths %}
+    			         {{ months }},
+    			{% endfor %}
+    			</li>
 <a href="{% url 'Rentdetails:editrentdetails'  rentdetails.id %}">edit</a>
 </ul>
 {% endblock %}

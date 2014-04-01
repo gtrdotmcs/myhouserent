@@ -25,5 +25,7 @@ class RentDetails(models.Model):
     rent_amount  = models.IntegerField(default=0)
     rent_given_date = models.DateField('Date on Rent Given')
     pay_inadvance = models.BooleanField()
-    Paid_for_mounths = MultiSelectField(choices=Months_year)    
+    Paid_for_mounths = MultiSelectField(choices=Months_year)
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return str(self.rent_given_date)   
     
