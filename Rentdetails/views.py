@@ -39,4 +39,4 @@ def submitrentdetails(request, rentdetail_id):
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('Rentdetails:inforentdetails', args=(u'1',)))
+        return HttpResponseRedirect(reverse('Rentdetails:inforentdetails', args=(rentdetail_id,)))

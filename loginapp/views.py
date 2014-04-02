@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.template import RequestContext
+from django.http import HttpResponseRedirect
 #from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
 
@@ -17,13 +18,13 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                return HttpResponseRedirect('/houseowner/')
 #                 state = "You're successfully logged in! %s"%username
 #             else:
 #                 state = "Your account is not active, please contact the site admin."
 #         else:
 #             state = "Your username and/or password were incorrect."
 
-    print username,password,"here"
     return render(request, 'logged_in.html', {'username': username})
 
 def logout_view(request):
