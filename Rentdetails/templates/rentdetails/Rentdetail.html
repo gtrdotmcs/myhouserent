@@ -4,10 +4,9 @@
 {% block content %}
 <h1>{{ rentdetails.RID }}</h1>
 <ul><b> Rentes given on date :{{ rentdetails.rent_given_date }}</b>
-    			<li>{{ rentdetails.rent_amount }}</li>
-    			<li>{{ rentdetails.rent_given_date }}</li>
-    			<li>{{ rentdetails.pay_inadvance }}</li>
-    			<li>{% for months in rentdetails.Paid_for_mounths %}
+    			<li Title="This is amount renter paid">{{ rentdetails.rent_amount }}</li>
+    			<li Title="This is amount renter paid in advance of month i.e befor the month" >{{ rentdetails.pay_inadvance }}</li>
+    			<li Title="This is amount renter paid for which? month">{% for months in rentdetails.Paid_for_mounths %}
     			    {% if forloop.counter == 1  %}
     			         {{ months }}
     			    {% else %}     
