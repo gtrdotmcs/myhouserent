@@ -1,8 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
+
+
 from django.http import HttpResponse
-from houseowner.models import HouseOwner 
+from houseowner.models import HouseOwner
+from django.template import RequestContext
+from django.shortcuts import render_to_response
+from forms import CountryForm
 #from django.contrib.auth.decorators import login_required
 
 #@login_required(login_url='/user/login/')
@@ -23,4 +28,16 @@ def detail(request, houseowner_id):
 def my_view(request):
     if not request.user.is_authenticated():
         return redirect('/login/?next=%s' % request.path)
-'''  
+''' 
+
+def countries_view(request):
+    if request.method == 'POST':
+        form = CountryForm(request.POST)
+        if form.is_valid():
+            countries = form.cleaned_data.get('countries')
+            print countries,""
+            # do something with your results
+    else:
+        form = CountryForm
+    return render_to_response('forms.html', {'form':form },
+        context_instance=RequestContext(request))

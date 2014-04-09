@@ -8,12 +8,12 @@
     			<li>{{ rentdetails.rent_given_date }}</li>
     			<li>{{ rentdetails.pay_inadvance }}</li>
     			<li>{% for months in rentdetails.Paid_for_mounths %}
-    			    {% if forloop.counter == 1  %}
+    			       {% if forloop.counter == 1  %}
     			         {{ months }}
-    			    {% else %}     
-    			    ,{{ months }}
-    			    {% endif %}
-    			{% endfor %}
+    			       {% else %}     
+    			         ,{{ months }}
+    			       {% endif %}
+    			    {% endfor %}
     			</li>
 <a href="{% url 'Rentdetails:editrentdetails'  rentdetails.id %}">edit</a>
 </ul>
