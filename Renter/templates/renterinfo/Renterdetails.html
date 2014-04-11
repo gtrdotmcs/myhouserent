@@ -6,5 +6,6 @@
 <ul>{% for renterdetails in renterinfo.rentdetails_set.all %}
 		<li><a href="{% url 'Rentdetails:inforentdetails'  renterdetails.id %}">{{ renterdetails }}</a></li>
 		{% endfor %}
+<a href="#">+ ADD</a>		
 </ul>
 {% endblock %}

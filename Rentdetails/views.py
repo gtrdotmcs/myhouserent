@@ -11,11 +11,16 @@ def inforentdetails(request, rentdetail_id):
 
 def editrentdetails(request, rentdetail_id):
     rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
-    return render(request, 'rentdetails/editrentdetails.html', {'rentdetails': rentdetails} )
+    if rentdetails:
+        return render(request, 'rentdetails/editrentdetails.html', {'rentdetails': rentdetails} )
+    else:
+        error_message ="fuck nothing gotten what the hell"
+        return render(request, 'rentdetails/editrentdetails.html', {'error_message': error_message} )
 
-def submitrentdetails(request, rentdetail_id):
+def submitrentdetails(request):
     
     try:
+        rentdetail_id = request.POST['rentdetails_id']
         rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
         
     except (KeyError, RentDetails.DoesNotExist):
