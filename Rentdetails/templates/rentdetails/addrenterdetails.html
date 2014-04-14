@@ -1,0 +1,22 @@
+{% extends "header_templet.html" %}
+{% block title %}HouseOwner{% endblock %}
+
+{% block content %}
+<h1>{{ rentdetails.RID }}</h1>
+{% if error_message %}
+<div class="alert alert-dismissable alert-danger">
+  <strong>Whop!</strong>
+  <p> {{ error_message }} </p>
+</div>
+{% endif %}
+<form action="{% url 'Rentdetails:submitrentdetails'%}" method="post">
+{% csrf_token %}
+<input name="rentdetails_id" type=hidden value=""/>
+<ul><li>Amount:<input name="Amount" value=""/></li>
+                <li>Date given:<input name="Dategiven" value=""/></li>
+                <li>payee in advance:<input name="pyeeadv" value=""/></li>
+                <li>mounths:<input name="months" value=""/></li>
+<input type="submit" value="Sumbit" />
+</form>
+</ul>
+{% endblock %}
