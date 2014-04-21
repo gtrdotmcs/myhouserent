@@ -2,16 +2,16 @@
 {% block title %}HouseOwner{% endblock %}
 
 {% block content %}
-<h1>{{ rentdetails.RID }}</h1>
+<h1>{{ renterdetails.full_name }}</h1>
 {% if error_message %}
 <div class="alert alert-dismissable alert-danger">
   <strong>Whop!</strong>
   <p> {{ error_message }} </p>
 </div>
 {% endif %}
-<form action="{% url 'Rentdetails:submitrentdetails'%}" method="post">
+<form action="{% url 'Rentdetails:submitrentdetails' 1 %}" method="post">
 {% csrf_token %}
-<input name="rentdetails_id" type=hidden value=""/>
+<input name="renterdetails_id" type=hidden value="{{renterdetails.id}}"/>
 <ul><li>Amount:<input name="Amount" value=""/></li>
                 <li>Date given:<input name="Dategiven" value=""/></li>
                 <li>payee in advance:<input name="pyeeadv" value=""/></li>

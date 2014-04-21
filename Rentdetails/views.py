@@ -4,6 +4,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from Rentdetails.models import RentDetails
+from Renter.models import RenterInfo
+from django.core.context_processors import request
   
 def inforentdetails(request, rentdetail_id):
     rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
@@ -17,11 +19,26 @@ def editrentdetails(request, rentdetail_id):
         error_message ="fuck nothing gotten what the hell"
         return render(request, 'rentdetails/editrentdetails.html', {'error_message': error_message} )
 
-def submitrentdetails(request):
+def addrentdetails(request, renterinfo_id):
+    renterdetails = get_object_or_404(RenterInfo, pk=renterinfo_id)
+    if renterdetails:
+        return render(request, 'rentdetails/addrenterdetails.html', {'renterdetails': renterdetails} )
+    else:
+        error_message = "fuck nothing gotten what the hell"
+        return render(request, 'rentdetails/addrenterdetails.html', {'error_message': error_message} )
+    
+def submitrentdetails(request,flag):
     
     try:
-        rentdetail_id = request.POST['rentdetails_id']
-        rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
+        if int(flag) == 0:
+            rentdetail_id = request.POST['rentdetails_id']
+            rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
+        elif int(flag) == 1:
+            rentdetail_id = request.POST['renterdetails_id']
+            rentdetails = RentDetails()
+            renterinfodetails = get_object_or_404(RenterInfo, pk=rentdetail_id)
+            rentdetails.HOID = renterinfodetails.HOID
+            rentdetails.RID = renterinfodetails
         
     except (KeyError, RentDetails.DoesNotExist):
         # Redisplay the poll voting form.
@@ -40,8 +57,9 @@ def submitrentdetails(request):
         rentdetails.pay_inadvance = request.POST['pyeeadv']
         rentdetails.rent_amount = request.POST['Amount']
         rentdetails.save()
+        
        
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('Rentdetails:inforentdetails', args=(rentdetail_id,)))
+        return HttpResponseRedirect(reverse('Rentdetails:inforentdetails', args=(rentdetails.id,)))

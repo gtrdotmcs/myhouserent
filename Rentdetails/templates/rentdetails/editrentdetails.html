@@ -9,7 +9,7 @@
   <p> {{ error_message }} </p>
 </div>
 {% endif %}
-<form action="{% url 'Rentdetails:submitrentdetails'%}" method="post">
+<form action="{% url 'Rentdetails:submitrentdetails' 0 %}" method="post">
 {% csrf_token %}
 <input name="rentdetails_id" type=hidden value="{{ rentdetails.id }}"/>
 <ul><b> Rentes given on date :{{ rentdetails.rent_given_date }}</b>
