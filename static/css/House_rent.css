@@ -1,0 +1,10 @@
+#editpopup{
+	position: absolute;
+    right: 23px;
+    text-decoration: none;
+}
+#showcollapse{
+    position: absolute;
+    right: 68px;
+    text-decoration: none;
+}
