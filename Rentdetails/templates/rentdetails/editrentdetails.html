@@ -16,7 +16,13 @@
     			<li>Amount:<input name="Amount" value="{{ rentdetails.rent_amount }}"/></li>
     			<li>Date given:<input name="Dategiven" value="{{ rentdetails }}"/></li>
     			<li>payee in advance:<input name="pyeeadv" value="{{ rentdetails.pay_inadvance }}"/></li>
-    			<li>mounths:<input name="months" value="{{ rentdetails.Paid_for_mounths }}"/></li>
+    			<li>mounths:{% for Acry_months in rentdetails.Months_year %} 
+    			{% if Acry_months.0 in rentdetails.Paid_for_mounths %} 
+                <input type="checkbox" class="advpayeemonth" value="{{Acry_months.0}}" checked="checked">{{Acry_months.1}}</checkbox>
+                {% else %}
+                <input type="checkbox" class="advpayeemonth" value="{{Acry_months.0}}" >{{Acry_months.1}}</checkbox>
+                {% endif %}
+                {% endfor %}<input name="months" id="submitmonths" value="" type="text"/></li>
 <input type="submit" value="Sumbit" />
 </form>
 </ul>
