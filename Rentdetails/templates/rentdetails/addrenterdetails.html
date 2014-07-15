@@ -17,7 +17,7 @@
                 <li>payee in advance:<input name="pyeeadv" value=""/></li>
                 <li>mounths:{% for Acry_months in renterdetails.Months_year %} 
                 <input type="checkbox" class="advpayeemonth" value="{{Acry_months.0}}" >{{Acry_months.1}}</checkbox>
-                {% endfor %}<input name="months" id="submitmonths" value="" type="text"/></li>
+                {% endfor %}<input name="months" id="submitmonths" value="" type="hidden"/></li>
 <input type="submit" value="Sumbit" />
 </form>
 </ul>
