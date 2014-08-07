@@ -2,8 +2,8 @@
 {% block title %}HouseOwner{% endblock %}
 
 {% block content %}
-<h1>{{ renterinfo.full_name }}</h1>
-
+<h1>Welcome {{ renterinfo.full_name }}</h1>
+<p> You can see here your rent given details:</p>
 <div class="panel-group" id="accordion">
   {% for renterdetails in renterinfo.rentdetails_set.all %}
   <div class="panel panel-default">

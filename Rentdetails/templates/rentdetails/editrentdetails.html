@@ -14,8 +14,10 @@
 <input name="rentdetails_id" type=hidden value="{{ rentdetails.id }}"/>
 <ul><b> Rentes given on date :{{ rentdetails.rent_given_date }}</b>
     			<li>Amount:<input name="Amount" value="{{ rentdetails.rent_amount }}"/></li>
-    			<li>Date given:<input name="Dategiven" value="{{ rentdetails }}"/></li>
-    			<li>payee in advance:<input name="pyeeadv" value="{{ rentdetails.pay_inadvance }}"/></li>
+    			<li>Date given:<span id ='sandbox-container' class="input-append date">
+                                  <input type="text" name="Dategiven" value="{{ rentdetails }}" class="span2"><span class="add-on"><i class="icon-th"></i></span>
+                               </span></li>
+    			<li>payee in advance:{% if rentdetails.pay_inadvance %} <input name="pyeeadv" value="{{ rentdetails.pay_inadvance }}" type='checkbox' checked/> {% else %} <input name="pyeeadv" value="{{ rentdetails.pay_inadvance }}" type='checkbox' /> {% endif %}</li>
     			<li>mounths:{% for Acry_months in rentdetails.Months_year %} 
     			{% if Acry_months.0 in rentdetails.Paid_for_mounths %} 
                 <input type="checkbox" class="advpayeemonth" value="{{Acry_months.0}}" checked="checked">{{Acry_months.1}}</checkbox>

@@ -13,6 +13,7 @@ def inforentdetails(request, rentdetail_id):
 
 def editrentdetails(request, rentdetail_id):
     rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
+    print dir(rentdetails)
     if rentdetails:
         return render(request, 'rentdetails/editrentdetails.html', {'rentdetails': rentdetails} )
     else:
@@ -21,6 +22,7 @@ def editrentdetails(request, rentdetail_id):
 
 def addrentdetails(request, renterinfo_id):
     renterdetails = get_object_or_404(RenterInfo, pk=renterinfo_id)
+    print dir(renterdetails)
     if renterdetails:
         return render(request, 'rentdetails/addrenterdetails.html', {'renterdetails': renterdetails} )
     else:
@@ -49,12 +51,12 @@ def submitrentdetails(request,flag):
     else:
         print request.POST['months']
         print request.POST['Dategiven']
-        print request.POST['pyeeadv']
+        print request.POST.get('pyeeadv', False)
         print request.POST['Amount']
         
         rentdetails.Paid_for_mounths = request.POST['months']
         rentdetails.rent_given_date = request.POST['Dategiven']
-        rentdetails.pay_inadvance = request.POST['pyeeadv']
+        rentdetails.pay_inadvance = request.POST.get('pyeeadv', False) #request.POST['pyeeadv']
         rentdetails.rent_amount = request.POST['Amount']
         rentdetails.save()
         

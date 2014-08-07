@@ -27,6 +27,12 @@ $( document ).ready(function() {
 					$( "#submitmonths" ).val(list_present.join(","));	
 			}
 		}); 
+	//date picker code javascript needed 'bootstrap-datepicker.js' 	
+		$('#sandbox-container.input-append.date').datepicker({
+			format: "yyyy-mm-dd",
+			autoclose: true
+		});
+		
 			
 });
 

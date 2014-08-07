@@ -5,7 +5,7 @@
 <h1>{{ rentdetails.RID }}</h1>
 <ul><b> Rentes given on date :{{ rentdetails.rent_given_date }}</b>
     			<li Title="This is amount renter paid">{{ rentdetails.rent_amount }}</li>
-    			<li Title="This is amount renter paid in advance of month i.e befor the month" >{{ rentdetails.pay_inadvance }}</li>
+    			<li Title="This is amount renter paid in advance of month i.e befor the month" >{% if rentdetails.pay_inadvance %} Yes {% else %} No {% endif %}</li>
     			<li Title="This is amount renter paid for which? month">{% for months in rentdetails.Paid_for_mounths %}
     			    {% if forloop.counter == 1  %}
     			         {{ months }}
@@ -15,6 +15,7 @@
     			    {% endfor %}
     			</li>
 <a href="{% url 'Rentdetails:editrentdetails' rentdetails.id %}">edit</a>
+<a href="{% url 'Renter:editdetails'  rentdetails.RID_id%}">back to details</a>
 
 </ul>
 {% endblock %}
