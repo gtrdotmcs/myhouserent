@@ -29,6 +29,21 @@ def addrentdetails(request, renterinfo_id):
         error_message = "fuck nothing gotten what the hell"
         return render(request, 'rentdetails/addrenterdetails.html', {'error_message': error_message} )
     
+def delete_rent_detail(request, rentdetail_id):
+   try :
+       rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
+       renterinfo = get_object_or_404(RenterInfo, pk=rentdetails.RID_id)
+       rentdetails.delete()
+       error_message = "%s  deleted successfully fully"%rentdetails
+       #return HttpResponseRedirect(reverse('renterinfo/Renterdetails.html',args=(renterinfo, error_message), kwargs={'renterinfo': renterinfo, 'error_message': error_message}))
+       #return reverse('renterinfo/Renterdetails.html', args=(renterinfo, error_message))
+       #return redirect('Renter.views.editdetails', {'renterinfo': renterinfo, 'error_message': error_message})
+       return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo, 'error_message': error_message})
+   except (KeyError, RentDetails.DoesNotExist):
+        # Redisplay the poll voting form.
+        renterinfo = get_object_or_404(RenterInfo, pk=1)
+        error_message = "what are you doing dude it dose not exist"
+        return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo, 'error_message': error_message}) 
 def submitrentdetails(request,flag):
     
     try:

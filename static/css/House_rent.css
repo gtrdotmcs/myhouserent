@@ -1,10 +1,16 @@
 #editpopup{
 	position: absolute;
+    right: 52px;
+    text-decoration: none;
+}
+
+#deletepopup{
+    position: absolute;
     right: 23px;
     text-decoration: none;
 }
 #showcollapse{
     position: absolute;
-    right: 68px;
+    right: 90px;
     text-decoration: none;
 }
