@@ -1,4 +1,4 @@
-#!/home/sthorat/workspace/myhouserent/venv/bin/python
+#!/home/action/workspace/myhouserent/venv/bin/python
 # EASY-INSTALL-ENTRY-SCRIPT: 'gunicorn==18.0','console_scripts','gunicorn_paster'
 __requires__ = 'gunicorn==18.0'
 import sys
