@@ -15,7 +15,7 @@
     			    {% endfor %}
     			</li>
 <a href="{% url 'Rentdetails:editrentdetails' rentdetails.id %}">edit</a>
-<a href="{% url 'Renter:editdetails'  rentdetails.RID_id%}">back to details</a>
+<a href="{% url 'Renter:showdetails'  rentdetails.RID_id%}">back to details</a>
 
 </ul>
 {% endblock %}

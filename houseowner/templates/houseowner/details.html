@@ -6,7 +6,7 @@
 <h3><i>Your Renter's are</i></h3>
 <ul>
 {% for renter in houseowner.renterinfo_set.all %}
-    <li><a href="{% url 'Renter:editdetails'  renter.id %}">{{ renter }}</a></li>
+    <li><a href="{% url 'Renter:showdetails'  renter.id %}">{{ renter }}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}

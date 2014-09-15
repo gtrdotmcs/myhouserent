@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from houseowner.models import HouseOwner
 from Renter.models import RenterInfo
     
-def editdetails(request, renter_id):
+def showdetails(request, renter_id):
     
     renterinfo = get_object_or_404(RenterInfo, pk=renter_id)
     return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo})
