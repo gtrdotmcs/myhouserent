@@ -4,9 +4,32 @@
 {% block content %}
 <h1>Welcome {{ houseowner.Full_Name }}</h1>
 <h3><i>Your Renter's are</i></h3>
-<ul>
+{% if error_message %}
+<div class="alert alert-dismissable alert-danger">
+  <strong>Whop!</strong>
+  <p> {{ error_message }} </p>
+</div>
+{% endif %}
+<div class="panel-group" id="accordion">
 {% for renter in houseowner.renterinfo_set.all %}
-    <li><a href="{% url 'Renter:showdetails'  renter.id %}">{{ renter }}</a></li>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+         <a href="{% url 'Renter:showdetails'  renter.id %}">{{ renter }}</a>
+         <a data-toggle="collapse"  data-parent="#accordion" class="icon-large icon-eye-open" href="#col{{renter.id}}" id="showcollapse"></a>
+         <a href="#delete" class="icon-large icon-remove" id="deletepopup"></a></a>
+         <a href="#edit" class="icon-large icon-edit" id="editpopup"></a>
+      </h4>
+    </div>
+    <div id="col{{renter.id}}" class="panel-collapse collapse">
+      <div class="panel-body">
+        <li Title="Full name of renter" >Name: {{renter.full_name}}</li>
+        <li Title="Rent Amount paied by {{renter.full_name}}" >Rent Amount(per month): {{renter.rent_amount}}</li>
+        <li Title="Agreement Started for {{renter.full_name}}" >Agreement Started: {{renter.start_rent_date}}</li>
+        <li Title="Agreement End for {{renter.full_name}}" >Agreement End: {{renter.end_rent_date}}</li>
+      </div>
+    </div>
+    </div>
 {% endfor %}
-</ul>
+</div>
 {% endblock %}
