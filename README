@@ -1,6 +1,8 @@
 for login link
 http://solutoire.com/2009/02/26/django-series-1-a-custom-login-page/
 https://docs.djangoproject.com/en/1.6/topics/auth/default/
+# why syncdb do not create table column newly added
+http://amionrails.wordpress.com/2013/11/17/django-databaseerror-no-such-column-error/
 new git for renter work
 
 git demo and try hand on it
