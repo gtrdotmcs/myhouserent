@@ -1,0 +1,32 @@
+{% extends "header_templet.html" %}
+{% block title %}editrenterinfo{% endblock %}
+
+{% block content %}
+<h1>Hi  {{renterinfo.HOID}}</h1>
+<h3><i>You can edit {{renterinfo}} details below</i></h3>
+{% if error_message %}
+<div class="alert alert-dismissable alert-danger">
+  <strong>Whop!</strong>
+  <p> {{ error_message }} </p>
+</div>
+{% endif %}
+<!-- form action="{% url 'Rentdetails:submitrentdetails' 0 %}" method="post" -->
+{% csrf_token %}
+<input name="rentdetails_id" type="hidden" value="{{ renterinfo.id }}"/>
+<ul>     <li Title="Full name of renter" >Name:
+             <input name="RenterName" value="{{renterinfo.full_name}}" /> 
+         </li>
+        <li Title="Rent Amount paied by {{renterinfo.full_name}}" >Rent Amount(per month):
+           <input name="RenterMonthrent" value="{{renterinfo.rent_amount}}" /></li>
+        <li Title="Agreement Started for {{renterinfo.full_name}}" >Agreement Started: 
+           <span id ='sandbox-container' class="input-append date">
+              <input type="text" name="Start_Rent_Date"  value="{{renterinfo.start_rent_date}}" class="span2"/>
+              <span class="add-on"><i class="icon-th"></i></span>
+           </span> </li>
+        <li Title="Agreement End for {{renterinfo.full_name}}" >Agreement End:
+           <span id ='sandbox-container' class="input-append date">
+              <input type="text" name="End_Rent_Date"  value=" {{renterinfo.end_rent_date}}" class="span2"/>
+              <span class="add-on"><i class="icon-th"></i></span>
+           </span> </li>
+<!-- input type="submit" value="Sumbit" /></form -->
+{% endblock %}

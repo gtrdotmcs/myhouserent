@@ -1,0 +1,13 @@
+{% extends "header_templet.html" %}
+{% block title %}{{renterinfo}}{% endblock %}
+
+{% block content %}
+<h1>Hi  {{ renterinfo }}</h1>
+<h3><i>Please Enter new Renter details below</i></h3>
+{% if error_message %}
+<div class="alert alert-dismissable alert-danger">
+  <strong>Whop!</strong>
+  <p> {{ error_message }} </p>
+</div>
+{% endif %}
+{% endblock %}
