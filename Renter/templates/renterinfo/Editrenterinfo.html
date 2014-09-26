@@ -10,9 +10,9 @@
   <p> {{ error_message }} </p>
 </div>
 {% endif %}
-<!-- form action="{% url 'Rentdetails:submitrentdetails' 0 %}" method="post" -->
+<form action="{% url 'Renter:submitrentinfo' 0 %}" method="post">
 {% csrf_token %}
-<input name="rentdetails_id" type="hidden" value="{{ renterinfo.id }}"/>
+<input name="renter_id" type="hidden" value="{{ renterinfo.id }}"/>
 <ul>     <li Title="Full name of renter" >Name:
              <input name="RenterName" value="{{renterinfo.full_name}}" /> 
          </li>
@@ -28,5 +28,5 @@
               <input type="text" name="End_Rent_Date"  value=" {{renterinfo.end_rent_date}}" class="span2"/>
               <span class="add-on"><i class="icon-th"></i></span>
            </span> </li>
-<!-- input type="submit" value="Sumbit" /></form -->
+<input type="submit" value="Sumbit" /></form>
 {% endblock %}

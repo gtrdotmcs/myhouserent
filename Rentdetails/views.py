@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from Rentdetails.models import RentDetails
 from Renter.models import RenterInfo
-from django.core.context_processors import request
+#from django.core.context_processors import request
   
 def inforentdetails(request, rentdetail_id):
     rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
@@ -44,6 +44,7 @@ def delete_rent_detail(request, rentdetail_id):
         renterinfo = get_object_or_404(RenterInfo, pk=1)
         error_message = "what are you doing dude it dose not exist"
         return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo, 'error_message': error_message}) 
+    
 def submitrentdetails(request,flag):
     
     try:

@@ -22,7 +22,11 @@ def index(request):
 #@login_required(login_url='/user/login/')
 def detail(request, houseowner_id):
     houseowner = get_object_or_404(HouseOwner, pk=houseowner_id)
-    return render(request, 'houseowner/details.html', {'houseowner': houseowner})
+    if houseowner:
+        return render(request, 'houseowner/details.html', {'houseowner': houseowner})
+    else:
+        error_message ="fuck nothing gotten what the hell"
+        return render(request, 'houseowner/details.html', {'error_message': error_message})
     #return HttpResponse("You're looking at poll %s." % houseowner_id)
 '''
 def my_view(request):
