@@ -1,20 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
-
-
-# Create your views here.
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from houseowner.models import HouseOwner
 from Renter.models import RenterInfo
-    
+#from django.contrib.auth.decorators import login_required
+
+#@login_required(login_url='/user/login/')    
 def showdetails(request, renter_id):
     
     renterinfo = get_object_or_404(RenterInfo, pk=renter_id)
     return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo})
 
-
+#@login_required(login_url='/user/login/')
 def addrenterinfo(request, houseowner_id):
     renterinfo = get_object_or_404(HouseOwner, pk=houseowner_id)
     print dir(renterinfo)
@@ -26,7 +25,7 @@ def addrenterinfo(request, houseowner_id):
     #return render(request, 'houseowner/details.html', {'houseowner': houseowner})
 
 
-
+#@login_required(login_url='/user/login/')
 def editrenterinfo(request, renter_id):
     renterinfo = get_object_or_404(RenterInfo, pk=renter_id)
     print dir(renterinfo)
@@ -35,7 +34,8 @@ def editrenterinfo(request, renter_id):
     else:
         error_message = "fuck nothing gotten what the hell"
         return render(request, 'renterinfo/Editrenterinfo.html', {'error_message': error_message} )
-    
+
+#@login_required(login_url='/user/login/')    
 def submitrentinfo(request,flag):
     
      print request.POST['RenterName']
@@ -69,5 +69,7 @@ def submitrentinfo(request,flag):
          # Always return an HttpResponseRedirect after successfully dealing
          # with POST data. This prevents data from being posted twice if a
          # user hits the Back button.
+         houseowner = get_object_or_404(HouseOwner, pk=renterinfo.HOID_id)
          success_message ="yo bro you rock!"
-         return HttpResponseRedirect(reverse('houseowner:detail', args=(renterinfo.HOID_id)))
+         #return render(request, 'houseowner/details.html', {'houseowner': houseowner,'success_message': success_message} )
+         return HttpResponseRedirect(reverse('houseowner:detail', args=(renterinfo.HOID_id,))+"?success_message=%s&renter_id=%s"%(success_message,str(renter_id)))

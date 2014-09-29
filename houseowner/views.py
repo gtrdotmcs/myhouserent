@@ -8,6 +8,7 @@ from houseowner.models import HouseOwner
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from forms import CountryForm
+from django.core.context_processors import request
 #from django.contrib.auth.decorators import login_required
 
 #@login_required(login_url='/user/login/')
@@ -22,8 +23,12 @@ def index(request):
 #@login_required(login_url='/user/login/')
 def detail(request, houseowner_id):
     houseowner = get_object_or_404(HouseOwner, pk=houseowner_id)
+    print request
     if houseowner:
-        return render(request, 'houseowner/details.html', {'houseowner': houseowner})
+        if request.method == 'GET' and 'success_message' in request.GET:
+            return render(request, 'houseowner/details.html', {'houseowner': houseowner,'success_message':request.GET['success_message']})
+        else:    
+            return render(request, 'houseowner/details.html', {'houseowner': houseowner})
     else:
         error_message ="fuck nothing gotten what the hell"
         return render(request, 'houseowner/details.html', {'error_message': error_message})
