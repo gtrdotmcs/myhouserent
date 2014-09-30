@@ -74,8 +74,10 @@ def submitrentdetails(request,flag):
         rentdetails.rent_amount = request.POST['Amount']
         rentdetails.save()
         
-       
+        success_message = encrypt_val("Successfully Done Kudos!")
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('Rentdetails:inforentdetails', args=(rentdetails.id,)))
+        return HttpResponseRedirect(reverse('Renter:showdetails', args=(rentdetails.RID_id,))+"?frmmsg=%s"%success_message)
+        #return HttpResponseRedirect(reverse('Rentdetails:inforentdetails', args=(rentdetails.id,)))
+        
