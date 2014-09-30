@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from Rentdetails.models import RentDetails
 from Renter.models import RenterInfo
+from myhouserent.cipherDiciphertext import encrypt_val, decrypt_val
 #from django.core.context_processors import request
   
 def inforentdetails(request, rentdetail_id):
@@ -32,13 +33,10 @@ def addrentdetails(request, renterinfo_id):
 def delete_rent_detail(request, rentdetail_id):
    try :
        rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
-       renterinfo = get_object_or_404(RenterInfo, pk=rentdetails.RID_id)
        rentdetails.delete()
-       error_message = "%s  deleted successfully fully"%rentdetails
-       #return HttpResponseRedirect(reverse('renterinfo/Renterdetails.html',args=(renterinfo, error_message), kwargs={'renterinfo': renterinfo, 'error_message': error_message}))
-       #return reverse('renterinfo/Renterdetails.html', args=(renterinfo, error_message))
-       #return redirect('Renter.views.editdetails', {'renterinfo': renterinfo, 'error_message': error_message})
-       return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo, 'error_message': error_message})
+       deleted_message = encrypt_val("%s  deleted successfully fully"%rentdetails)
+       return HttpResponseRedirect(reverse('Renter:showdetails', args=(rentdetails.RID_id,))+"?delmsg=%s"%deleted_message)
+       #return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo, 'error_message': error_message})
    except (KeyError, RentDetails.DoesNotExist):
         # Redisplay the poll voting form.
         renterinfo = get_object_or_404(RenterInfo, pk=1)

@@ -18,4 +18,24 @@
   
 </div>
 {% endif %}
+
+<form action="{% url 'Renter:submitrentinfo' 1 %}" method="post">
+{% csrf_token %}
+<input name="houseowner_id" type="hidden" value="{{ renterinfo.id }}"/>
+<ul>     <li Title="Enter Full name of renter" >Name:
+             <input name="RenterName" value="" /> 
+         </li>
+        <li Title="Enter Rent Amount paied by Renter" >Rent Amount(per month):
+           <input name="RenterMonthrent" value="" /></li>
+        <li Title="Enter Agreement Started" >Agreement Started: 
+           <span id ='sandbox-container' class="input-append date">
+              <input type="text" name="Start_Rent_Date"  value="" class="span2"/>
+              <span class="add-on"><i class="icon-th"></i></span>
+           </span> </li>
+        <li Title="Enter Agreement End " >Agreement End:
+           <span id ='sandbox-container' class="input-append date">
+              <input type="text" name="End_Rent_Date"  value="" class="span2"/>
+              <span class="add-on"><i class="icon-th"></i></span>
+           </span> </li>
+<input type="submit" value="Sumbit" /></form>
 {% endblock %}

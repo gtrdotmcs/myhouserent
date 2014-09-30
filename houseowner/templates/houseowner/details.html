@@ -25,7 +25,7 @@
       <h4 class="panel-title">
          <a href="{% url 'Renter:showdetails'  renter.id %}">{{ renter }}</a>
          <a data-toggle="collapse"  data-parent="#accordion" class="icon-large icon-eye-open" href="#col{{renter.id}}" id="showcollapse"></a>
-         <a href="#delete" class="icon-large icon-remove" id="deletepopup"></a></a>
+         <a href="{% url 'Renter:deleterenterinfo' renter.id %}" class="icon-large icon-remove" id="deletepopup"></a></a>
          <a href="{% url 'Renter:editrenterinfo' renter.id %}" class="icon-large icon-edit" id="editpopup"></a>
       </h4>
     </div>
