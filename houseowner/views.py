@@ -10,9 +10,10 @@ from django.shortcuts import render_to_response
 from forms import CountryForm
 from django.core.context_processors import request
 from myhouserent.cipherDiciphertext import encrypt_val, decrypt_val
-#from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.decorators import login_required, permission_required
 
 #@login_required(login_url='/user/login/')
+#@permission_required('houseowner.add_houseowner')
 def index(request):
     #latest_houseowner_list = HouseOwner.objects.order_by()
     #output = ', '.join([p.Full_Name for p in latest_houseowner_list])

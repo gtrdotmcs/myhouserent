@@ -24,6 +24,12 @@
 <ul>     <li Title="Full name of renter" >Name:
              <input name="RenterName" value="{{renterinfo.full_name}}" /> 
          </li>
+          <li Title="Previous Address of renter" >Previous Address: 
+            <input name="RenterPreviousAdd" value="{{renter.previous_address}}" />
+         </li>
+        <li Title="Depsoit By renter" >Deposit Submited:
+            <input name="RenterDeposit" value="{{renter.deposit_by_renter}}" />
+        </li>
         <li Title="Rent Amount paied by {{renterinfo.full_name}}" >Rent Amount(per month):
            <input name="RenterMonthrent" value="{{renterinfo.rent_amount}}" /></li>
         <li Title="Agreement Started for {{renterinfo.full_name}}" >Agreement Started: 

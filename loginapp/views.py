@@ -18,6 +18,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                print user.get_all_permissions()
                 return HttpResponseRedirect('/houseowner/')
 #                 state = "You're successfully logged in! %s"%username
 #             else:

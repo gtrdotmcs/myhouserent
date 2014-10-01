@@ -93,6 +93,8 @@ def submitrentinfo(request,flag):
      else:
                
          renterinfo.full_name = request.POST['RenterName']
+         renterinfo.previous_address = request.POST['RenterPreviousAdd']
+         renterinfo.deposit_by_renter = request.POST['RenterDeposit']
          renterinfo.rent_amount = request.POST['RenterMonthrent']
          renterinfo.start_rent_date = request.POST['Start_Rent_Date']
          renterinfo.end_rent_date = request.POST['End_Rent_Date']
