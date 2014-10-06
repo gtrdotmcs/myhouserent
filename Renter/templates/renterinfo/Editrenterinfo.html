@@ -21,14 +21,26 @@
 <form action="{% url 'Renter:submitrentinfo' 0 %}" method="post">
 {% csrf_token %}
 <input name="renter_id" type="hidden" value="{{ renterinfo.id }}"/>
-<ul>     <li Title="Full name of renter" >Name:
+<input name="userdetails_id" type="hidden" value="{{ userdetails.id }}"/>
+<ul>   {# if perms.Renter.change_renterinfo #}  
+     <li Title="Enter User name for renter it need to be unique" >Username:
+             <input name="RenterUsername" value="{{userdetails.username}}" /> <button disabled> Comming soon(Check Availability)</button>
+         </li>
+         <li Title="Enter Password for renter(He may change in future)" >Password:
+             <input name="RenterPassword" value="" type="password" /> 
+         </li>
+         <li Title="Enter email id of renter" >Email:
+             <input name="RenterEmailid" value="{{userdetails.email}}" type="email"/> 
+         </li> 
+      {# endif #}   
+<li Title="Full name of renter" >Name:
              <input name="RenterName" value="{{renterinfo.full_name}}" /> 
          </li>
           <li Title="Previous Address of renter" >Previous Address: 
-            <input name="RenterPreviousAdd" value="{{renter.previous_address}}" />
+            <input name="RenterPreviousAdd" value="{{renterinfo.previous_address}}" />
          </li>
         <li Title="Depsoit By renter" >Deposit Submited:
-            <input name="RenterDeposit" value="{{renter.deposit_by_renter}}" />
+            <input name="RenterDeposit" value="{{renterinfo.deposit_by_renter}}" />
         </li>
         <li Title="Rent Amount paied by {{renterinfo.full_name}}" >Rent Amount(per month):
            <input name="RenterMonthrent" value="{{renterinfo.rent_amount}}" /></li>

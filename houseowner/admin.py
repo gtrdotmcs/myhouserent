@@ -7,7 +7,7 @@ class RenterInline(admin.TabularInline):
     model = RenterInfo
     
 class HouseOwnerAdmin(admin.ModelAdmin):
-    fields = ['Full_Name', 'No_of_renters', 'Address_of_houseowner','Houseownerjoinedthesite']
+    fields = ['UID','Full_Name', 'No_of_renters', 'Address_of_houseowner','Houseownerjoinedthesite']
     inlines = [RenterInline]
     
 admin.site.register(HouseOwner, HouseOwnerAdmin)

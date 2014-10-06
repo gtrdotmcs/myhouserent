@@ -1,7 +1,9 @@
 from django.db import models
 from houseowner.models import HouseOwner
+from django.contrib.auth.models import User
 # Create your models here.
 class RenterInfo(models.Model):
+    UID = models.ForeignKey(User)
     HOID = models.ForeignKey(HouseOwner)
     full_name = models.CharField(max_length=200)
     previous_address = models.CharField(max_length=200)

@@ -22,7 +22,17 @@
 <form action="{% url 'Renter:submitrentinfo' 1 %}" method="post">
 {% csrf_token %}
 <input name="houseowner_id" type="hidden" value="{{ renterinfo.id }}"/>
-<ul>     <li Title="Enter Full name of renter" >Name:
+<ul>     
+         <li Title="Enter User name for renter it need to be unique" >Username:
+             <input name="RenterUsername" value="" /> <button disabled> Comming soon(Check Availability)</button>
+         </li>
+         <li Title="Enter Password for renter(He may change in future)" >Password:
+             <input name="RenterPassword" value="" type="password" /> 
+         </li>
+         <li Title="Enter email id of renter" >Email:
+             <input name="RenterEmailid" value="" type="email"/> 
+         </li> 
+         <li Title="Enter Full name of renter" >Name:
              <input name="RenterName" value="" /> 
          </li>
          <li Title="Previous Address of renter" >Previous Address: 

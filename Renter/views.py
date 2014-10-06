@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-
+from django.contrib.auth.models import User, Group
 # Create your views here.
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
@@ -43,8 +43,9 @@ def addrenterinfo(request, houseowner_id):
 #@login_required(login_url='/user/login/')
 def editrenterinfo(request, renter_id):
     renterinfo = get_object_or_404(RenterInfo, pk=renter_id)
+    userobject = get_object_or_404(User, pk=renterinfo.UID_id)
     if renterinfo:
-        return render(request, 'renterinfo/Editrenterinfo.html', {'renterinfo': renterinfo} )
+        return render(request, 'renterinfo/Editrenterinfo.html', {'renterinfo': renterinfo, 'userdetails':userobject} )
     else:
         error_message = "fuck nothing gotten what the hell"
         return render(request, 'renterinfo/Editrenterinfo.html', {'error_message': error_message} )
@@ -76,12 +77,25 @@ def submitrentinfo(request,flag):
      try:
          if int(flag) == 0:
              renter_id = request.POST['renter_id']
+             user_id = request.POST['userdetails_id']
              renterinfo = get_object_or_404(RenterInfo, pk=renter_id)
+             userinfoedit = get_object_or_404(User, pk=user_id)
+             if request.POST['RenterPassword'].strip() != "" and request.POST['RenterEmailid'].strip() != "" and request.POST['RenterPassword'].strip() != "":
+               userinfoedit.username = request.POST['RenterUsername']
+               userinfoedit.email = request.POST['RenterEmailid']
+               userinfoedit.set_password(request.POST['RenterPassword']) 
+               userinfoedit.save()
          elif int(flag) == 1:
+             renterinfo = RenterInfo() # object of Renter
+             #create new user with Renterinfo group
+             user = User.objects.create_user(request.POST['RenterUsername'], request.POST['RenterEmailid'], request.POST['RenterPassword'])
+             user.save()
+             g = Group.objects.get(name='Renter_Group') 
+             g.user_set.add(user)
+             renterinfo.UID = user # assign it to the renter created.
+             # add user under which house owner the user relies
              houseowner_id = request.POST['houseowner_id']
-             renterinfo = RenterInfo()
              renterinfodetails = get_object_or_404(HouseOwner, pk=houseowner_id)
-             print dir(renterinfodetails)
              renterinfo.HOID = renterinfodetails
          
      except (KeyError, RenterInfo.DoesNotExist):
@@ -91,7 +105,6 @@ def submitrentinfo(request,flag):
              'error_message': "You didn't correctly edited.",
          })
      else:
-               
          renterinfo.full_name = request.POST['RenterName']
          renterinfo.previous_address = request.POST['RenterPreviousAdd']
          renterinfo.deposit_by_renter = request.POST['RenterDeposit']
