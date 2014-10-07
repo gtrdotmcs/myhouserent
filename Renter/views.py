@@ -12,18 +12,19 @@ from myhouserent.cipherDiciphertext import encrypt_val, decrypt_val
 def showdetails(request, renter_id):
     
     renterinfo = get_object_or_404(RenterInfo, pk=renter_id)
+    listrneterdetails = renterinfo.rentdetails_set.all()
     if renterinfo:
         if request.method == 'GET' and 'frmmsg' in request.GET or 'delmsg' in request.GET:
             if 'frmmsg' in request.GET:
                 message = decrypt_val(request.GET['frmmsg'].replace(' ', '+'))
-                context = {'renterinfo': renterinfo,'success_message':message}
+                context = {'renterinfo': renterinfo,'success_message':message, 'listrneterdetails':listrneterdetails}
             elif 'delmsg' in request.GET:
                 message = decrypt_val(request.GET['delmsg'].replace(' ', '+'))
-                context = {'renterinfo': renterinfo,'error_message':message}       
+                context = {'renterinfo': renterinfo,'error_message':message, 'listrneterdetails':listrneterdetails}       
             # not a perfect solution to replace the space with + but as url decode + as space we are doing for now in future it may hurt the code  
             return render(request, 'renterinfo/Renterdetails.html', context)
         else:    
-            return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo})
+            return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo, 'listrneterdetails':listrneterdetails})
     else:
         error_message = "hell ya it dose not exits dude!"     
         return render(request, 'renterinfo/Renterdetails.html', {'error_message': error_message})  
@@ -66,6 +67,17 @@ def deleterenterinfo(request, renter_id):
         renterinfo = get_object_or_404(RenterInfo, pk=1)
         error_message = "what are you doing dude it dose not exist"
         return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo, 'error_message': error_message})
+    
+#@login_required(login_url='/user/login/')
+def showRentDetailsForyear(request, renter_id, rentfor_year):
+    renterinfo = get_object_or_404(RenterInfo, pk=renter_id)
+    listrneterdetails = renterinfo.rentdetails_set.filter(rent_given_date__icontains=rentfor_year)
+    message = rentfor_year
+    if int(rentfor_year) < 1998 :
+        message = " %s ha ha Before this house was also not build are you was trying to to illegal construction here "%rentfor_year
+    elif int(rentfor_year) > 2100:
+        message = " %s ha ha Do you belive you be alive till this year "%rentfor_year   
+    return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo, 'info_message':message, 'listrneterdetails':listrneterdetails})
     
 #@login_required(login_url='/user/login/')    
 def submitrentinfo(request,flag):
