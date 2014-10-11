@@ -29,7 +29,7 @@ TEMPLATE_DEBUG = True
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 #LOGIN_URL = "/login/"
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['myrentmang.herokuapp.com']
 
 
 # Application definition
