@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'Renter',
     'Rentdetails',
     'loginapp',
+    'gunicorn',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -63,11 +64,38 @@ WSGI_APPLICATION = 'myhouserent.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+'''
+# Database
+# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+''' RunLocaly Comment and Uncomment Run Heroku(Do not change this comment line)
+DATABASES = {
+    'default': {
+        'ENGINE':'django.db.backends.postgresql_psycopg2',
+        'NAME': 'gtrdotmcs',
+        'USER': 'ghanshyam',
+        'PASSWORD': 'ghanshyam',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+'''
+# on heroku deployment set this uncomment upper comment it
+DATABASES = {
+    'default': {
+        
+        'ENGINE':'ec2-54-235-250-41.compute-1.amazonaws.com',
+        'NAME': 'd8ssbeatuknaab',
+        'USER': 'tsxexnwfaayznp',
+        'PASSWORD': 'lxpR73-9ttEpwZzbXujAgrEKIt',
+        #'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -88,8 +116,41 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
-)
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# URL prefix for static files.
+# Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+
+
+'''
+To run on local need to comment below part
+'''
+#''' Run setting for heroku comment it and localy uncomment it
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+#STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+#'''

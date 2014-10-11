@@ -1,1 +1,1 @@
-web: gunicorn myhouserent.wsgi
+web: gunicorn myhouserent.wsgi --log-file -
