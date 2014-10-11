@@ -1,4 +1,4 @@
-dj-static=0.0.6
+dj-static==0.0.6
 BeautifulSoup==3.2.1
 Cython==0.20
 GitPython==0.3.2.RC1
