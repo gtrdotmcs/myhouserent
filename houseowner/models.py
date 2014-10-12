@@ -1,3 +1,6 @@
+#API Testypie for restapicall to the django app
+from tastypie.utils.timezone import now
+#Default
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.

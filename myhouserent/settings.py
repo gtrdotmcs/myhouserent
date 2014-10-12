@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'Rentdetails',
     'loginapp',
     'gunicorn',
+    'tastypie',
 )
 
 MIDDLEWARE_CLASSES = (
