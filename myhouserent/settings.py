@@ -74,11 +74,11 @@ DATABASES = {
 '''
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-''' RunLocaly Comment and Uncomment Run Heroku(Do not change this comment line)
+#''' RunLocaly Comment and Uncomment Run Heroku(Do not change this comment line)
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME': 'gtrdotmcs',
+        'NAME': 'myhouserent',
         'USER': 'ghanshyam',
         'PASSWORD': 'ghanshyam',
         'HOST': '127.0.0.1',
@@ -98,7 +98,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
+#'''
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
@@ -133,7 +133,7 @@ STATICFILES_DIRS = (
 '''
 To run on local need to comment below part
 '''
-#''' Run setting for heroku comment it and localy uncomment it
+''' Run setting for heroku comment it and localy uncomment it
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
