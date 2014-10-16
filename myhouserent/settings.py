@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import django
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # heroku requirement
 #import dj_database_url
@@ -26,7 +27,9 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+TEMPLATE_DIRS = ('',
+                 os.path.join(BASE_DIR, 'templates'),
+)
 
 #LOGIN_URL = "/login/"
 ALLOWED_HOSTS = []
@@ -84,12 +87,48 @@ USE_L10N = True
 
 USE_TZ = True
 
-
+TEST_RUNNER = 'django.test.simple.DjangoTestSuiteRunner'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-
+DJANGO_ADMIN_ROOT = os.path.abspath(os.path.join(os.path.dirname( django.__file__ ), 'contrib/admin'))
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
+    os.path.join(DJANGO_ADMIN_ROOT,"static"),
+    #'/var/www/static/',
 )
 STATIC_URL = '/static/'
+
+
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+'''
+To run on local need to comment below part
+'''
+''' Run setting for heroku comment it and localy uncomment it
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+#STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+#'''

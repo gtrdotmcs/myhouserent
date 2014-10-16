@@ -32,9 +32,57 @@ $( document ).ready(function() {
 			format: "yyyy-mm-dd",
 			autoclose: true
 		});
-		
+	DateAutogenetareonRneterCreation();	
 			
 });
+
+function DateAutogenetareonRneterCreation(){
+	var ispresent = $('input[name="Start_Rent_Date"]').val()
+	if (ispresent == ""){
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+	
+		if(dd<10) {
+		    day='0'+dd
+		}else{
+			day= dd
+		} 
+	
+		if(mm<10) {
+			
+		    month='0'+mm
+		}else{
+			month = mm
+		} 
+	
+		today = yyyy+'-'+month+'-'+day;
+		//after 11 months
+		if(mm > 1){
+			if(mm<10) {		
+				var mounthtoleavehouse = '0' + (mm -1) //January is 0!
+			}else{
+				var mounthtoleavehouse = mm -1
+			} 
+			if( dd < 29){
+				if(dd<10) {
+				    dayend='0'+dd
+				}else{
+					dayend= dd
+				} 
+			}else{
+				dayend = '28' 
+			}
+			var yeartoleavehouse = yyyy+1;
+			after11mounth = yeartoleavehouse+'-'+mounthtoleavehouse+'-'+dayend;	
+		}else{
+			after11mounth = yyyy+'-'+(mm+11)+'-'+'28';
+		}
+		$("input[name='Start_Rent_Date']").val(today);
+		$('input[name="End_Rent_Date"]').val(after11mounth);
+	}//for adding new renter joindate
+}
 
 function checkouttext(elem) {
 	 // Add the months for the renter in hidden field  
