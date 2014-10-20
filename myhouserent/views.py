@@ -8,6 +8,6 @@ from Renter.models import RenterInfo
 from myhouserent.cipherDiciphertext import encrypt_val, decrypt_val
 #from django.contrib.auth.decorators import login_required
 
-#@login_required(login_url='    /') 
+#@login_required(login_url='/user/login/') 
 def mainindex(request):
-    return HttpResponseRedirect('/houseowner/')
+    return HttpResponseRedirect('/user/login/')

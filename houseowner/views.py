@@ -10,10 +10,10 @@ from django.shortcuts import render_to_response
 from forms import CountryForm
 from django.core.context_processors import request
 from myhouserent.cipherDiciphertext import encrypt_val, decrypt_val
-#from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required, permission_required
 
-#@login_required(login_url='/user/login/')
-#@permission_required('houseowner.add_houseowner')
+@login_required(login_url='/user/login/')
+@permission_required('houseowner.add_houseowner')
 def index(request):
     #latest_houseowner_list = HouseOwner.objects.order_by()
     #output = ', '.join([p.Full_Name for p in latest_houseowner_list])
@@ -22,7 +22,7 @@ def index(request):
     context = {'Houseowner_list': Houseowner_list}
     return render(request, 'houseowner/houseownerdetails.html', context)
 
-#@login_required(login_url='/user/login/')
+@login_required(login_url='/user/login/')
 def detail(request, houseowner_id):
     houseowner = get_object_or_404(HouseOwner, pk=houseowner_id)
     print request
