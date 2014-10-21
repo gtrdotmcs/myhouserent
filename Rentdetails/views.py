@@ -7,11 +7,16 @@ from Rentdetails.models import RentDetails
 from Renter.models import RenterInfo
 from myhouserent.cipherDiciphertext import encrypt_val, decrypt_val
 #from django.core.context_processors import request
-  
+from django.contrib.auth.decorators import login_required, permission_required
+
+
+#@permission_required('houseowner.add_houseowner')
+@login_required(login_url='/user/login/')
 def inforentdetails(request, rentdetail_id):
     rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
     return render(request, 'rentdetails/Rentdetail.html', {'rentdetails': rentdetails} )
 
+@login_required(login_url='/user/login/')
 def editrentdetails(request, rentdetail_id):
     rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
     print dir(rentdetails)
@@ -20,7 +25,8 @@ def editrentdetails(request, rentdetail_id):
     else:
         error_message ="fuck nothing gotten what the hell"
         return render(request, 'rentdetails/editrentdetails.html', {'error_message': error_message} )
-
+    
+@login_required(login_url='/user/login/')
 def addrentdetails(request, renterinfo_id):
     renterdetails = get_object_or_404(RenterInfo, pk=renterinfo_id)
     print dir(renterdetails)
@@ -29,7 +35,8 @@ def addrentdetails(request, renterinfo_id):
     else:
         error_message = "fuck nothing gotten what the hell"
         return render(request, 'rentdetails/addrenterdetails.html', {'error_message': error_message} )
-    
+
+@login_required(login_url='/user/login/')    
 def delete_rent_detail(request, rentdetail_id):
    try :
        rentdetails = get_object_or_404(RentDetails, pk=rentdetail_id)
@@ -42,7 +49,8 @@ def delete_rent_detail(request, rentdetail_id):
         renterinfo = get_object_or_404(RenterInfo, pk=1)
         error_message = "what are you doing dude it dose not exist"
         return render(request, 'renterinfo/Renterdetails.html', {'renterinfo': renterinfo, 'error_message': error_message}) 
-    
+
+@login_required(login_url='/user/login/')    
 def submitrentdetails(request,flag):
     
     try:
