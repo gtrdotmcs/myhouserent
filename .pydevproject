@@ -3,8 +3,10 @@
 <pydev_variables_property name="org.python.pydev.PROJECT_VARIABLE_SUBSTITUTION">
 <key>DJANGO_MANAGE_LOCATION</key>
 <value>manage.py</value>
+<key>DJANGO_SETTINGS_MODULE</key>
+<value>myhouserent.settings</value>
 </pydev_variables_property>
 
 <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python 2.7</pydev_property>
-<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">myrentvenv</pydev_property>
+<pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Myhouserent</pydev_property>
 </pydev_project>

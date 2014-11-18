@@ -20,6 +20,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
+#                print dir(user)
                 print user.get_all_permissions()
                 Groupperm = user.groups.all()[0]
                 if Groupperm.name == 'HouseownerGroup':
