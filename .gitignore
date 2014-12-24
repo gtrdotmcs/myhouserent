@@ -1,5 +1,5 @@
-venv/
 *.pyc
-*.*~
-.project
-.pydevproject
+*.py~
+venv/*
+*.pydevproject
+*.project
