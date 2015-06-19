@@ -1,7 +1,9 @@
 from django.conf.urls import patterns, url
 
 from Renter import views
+from Renter.renterapi import RenterResource
 
+entry_resource = RenterResource()
 # maps urls
 urlpatterns = patterns('',
     url(r'^(?P<renter_id>\d+)/details$', views.showdetails, name='showdetails'),
@@ -10,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^(?P<renter_id>\d+)/edit$', views.editrenterinfo, name='editrenterinfo'),
     url(r'^(?P<renter_id>\d+)/delete$', views.deleterenterinfo, name='deleterenterinfo'),
     url(r'^(?P<flag>\d+)/submit$', views.submitrentinfo, name='submitrentinfo'),
+    (r'^renterapi/', include(entry_resource.urls)),
     #url(r'^HOspcf/(?P<houseowner_id>\d+)/$', views.detail, name='detail')
 )
