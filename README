@@ -7,3 +7,8 @@ new git for renter work
 
 git demo and try hand on it
 http://try.github.io/
+
+# for testipy test after running code use this to test:
+http://hostname/houseowner/houseownerapi/houseowner/?format=json
+
+http://hostname/renterinfo/renterapi/renter/?format=json

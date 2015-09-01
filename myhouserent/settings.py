@@ -65,17 +65,17 @@ WSGI_APPLICATION = 'myhouserent.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-'''
+#'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-'''
+#'''
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-#''' RunLocaly Comment and Uncomment Run Heroku(Do not change this comment line)
+'''- RunLocaly Comment and Uncomment Run Heroku(Do not change this comment line)
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
@@ -86,7 +86,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-'''
+# ' ' '
 # on heroku deployment set this uncomment upper comment it
 DATABASES = {
     'default': {

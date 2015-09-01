@@ -25,7 +25,6 @@ def index(request):
 #@login_required(login_url='/user/login/')
 def detail(request, houseowner_id):
     houseowner = get_object_or_404(HouseOwner, pk=houseowner_id)
-    print request
     if houseowner:
         if request.method == 'GET' and 'frmmsg' in request.GET or 'delmsg' in request.GET:
             if 'frmmsg' in request.GET:
