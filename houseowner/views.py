@@ -38,7 +38,7 @@ def detail(request, houseowner_id):
         else:    
             return render(request, 'houseowner/details.html', {'houseowner': houseowner})
     else:
-        error_message ="fuck nothing gotten what the hell"
+        error_message ="nothing gotten what the hell"
         return render(request, 'houseowner/details.html', {'error_message': error_message})
     #return HttpResponse("You're looking at poll %s." % houseowner_id)
 '''
