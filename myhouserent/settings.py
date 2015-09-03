@@ -58,6 +58,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+API_LIMIT_PER_PAGE = 100
+
+TASTYPIE_FULL_DEBUG = True
+
+TASTYPIE_DEFAULT_FORMATS = ['json']
+ 
 ROOT_URLCONF = 'myhouserent.urls'
 
 WSGI_APPLICATION = 'myhouserent.wsgi.application'
