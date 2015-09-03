@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url, include
 from houseowner.houserentapi import HouseownerResource, UserResource
-from houseowner import views
+from houseowner import views    
 from tastypie.api import Api
 
 v1_api = Api(api_name='v1')

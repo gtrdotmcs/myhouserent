@@ -5,7 +5,7 @@ from tastypie.authorization import Authorization
 from django.contrib.auth.models import User
 
 from houseowner.models import HouseOwner
-
+from tastypie.models import ApiKey
 from django.contrib.auth import authenticate, login, logout
 from tastypie.http import HttpUnauthorized, HttpForbidden
 from django.conf.urls import url
@@ -14,7 +14,7 @@ from tastypie.utils import trailing_slash
 class UserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()
-        fields = ['id']
+        fields = ['id',"username"]
         allowed_methods = ['get', 'post']
         resource_name = 'user'
         
@@ -29,7 +29,6 @@ class UserResource(ModelResource):
         ]
 
     def login(self, request, **kwargs):
-        print "hehehehe"
         self.method_check(request, allowed=['post'])
         data = self.deserialize(request, request.body, format=request.META.get('CONTENT_TYPE', 'application/json'))
         username = data.get('username', '')
@@ -39,17 +38,25 @@ class UserResource(ModelResource):
         if user:
             if user.is_active:
                 login(request, user)
-                print user.password
-                return self.create_response(request, {
-                    'success': True,
-                    'userinfo': {'user_group': user.groups.all()[0].name,
-                                 'first_name': user.first_name,
-                                 'last_name':user.last_name,
-                                 'username':user.username,
-                                 'usermail_id': user.email,
-                                 'UID': user.pk,
-                                 'active': user.is_active }
-                })
+                user_apikey =  ApiKey.objects.get(user_id=user.pk)
+                if user_apikey:
+                    print user
+                    return self.create_response(request, {
+                        'success': True,
+                        'userinfo': {'user_group': user.groups.all()[0].name,
+                                     'first_name': user.first_name,
+                                     'last_name':user.last_name,
+                                     'username':user.username,
+                                     'usermail_id': user.email,
+                                     'UID': user.pk,
+                                     'user_apikey': user_apikey.key,
+                                     'active': user.is_active }
+                    })
+                else:
+                    return self.create_response(request, {
+                    'success': False,
+                    'reason': 'user_apikey not present',
+                    }, HttpForbidden )
             else:
                 return self.create_response(request, {
                     'success': False,
@@ -77,9 +84,10 @@ class UserResource(ModelResource):
 #     excludes = ['email', 'password', 'is_active', 'is_staff', 'is_superuser']
     
 class HouseownerResource(ModelResource):
-    UID = fields.ForeignKey(UserResource, 'UID', full=True)
+    UID = fields.ForeignKey(UserResource, 'UID', full=True, null=True)
     class Meta:
         queryset = HouseOwner.objects.all()
-        resource_name = 'houseowner'
+        allowed_methods = ['get', 'post']
+        include_resource_uri = True
         authorization = Authorization()
-        
+        resource_name = 'houseowner'

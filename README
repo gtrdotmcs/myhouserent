@@ -12,3 +12,6 @@ http://try.github.io/
 http://hostname/houseowner/houseownerapi/houseowner/?format=json
 
 http://hostname/renterinfo/renterapi/renter/?format=json
+
+# some help
+https://djangoblog.cz/2014/01/05/foreign-key-related-models-in-django-tastypie-api.html

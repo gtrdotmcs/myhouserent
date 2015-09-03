@@ -5,7 +5,7 @@ from houseowner.houserentapi import HouseownerResource
 
 
 class RenterResource(ModelResource):
-    HOID = fields.ForeignKey(HouseownerResource, 'HOID_id')
+    HOID = fields.ForeignKey(HouseownerResource, 'HOID', full=True)
     class Meta:
         queryset = RenterInfo.objects.all()
         resource_name = 'renter'
