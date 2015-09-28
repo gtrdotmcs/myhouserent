@@ -55,9 +55,9 @@
     <div id="col{{renterdetails.id}}" class="panel-collapse collapse">
       <div class="panel-body">
      <b> Rentes given on date :{{ renterdetails.rent_given_date }}</b>
-                <li Title="This is amount renter paid">{{ renterdetails.rent_amount }}</li>
-                <li Title="This is amount renter paid in advance of month i.e befor the month" >{{ renterdetails.pay_inadvance }}</li>
-                <li Title="This is amount renter paid for which? month">{% for months in renterdetails.Paid_for_mounths %}
+                <li class="list-group-item list-group-item-info" Title="This is amount renter paid">{{ renterdetails.rent_amount }}</li>
+                <li class="list-group-item list-group-item-info" Title="This is amount renter paid in advance of month i.e befor the month" >{{ renterdetails.pay_inadvance }}</li>
+                <li class="list-group-item list-group-item-info" Title="This is amount renter paid for which? month">{% for months in renterdetails.Paid_for_mounths %}
                     {% if forloop.counter == 1  %}
                          {{ months }}
                        {% else %}     

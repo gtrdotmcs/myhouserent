@@ -22,37 +22,57 @@
 {% csrf_token %}
 <input name="renter_id" type="hidden" value="{{ renterinfo.id }}"/>
 <input name="userdetails_id" type="hidden" value="{{ userdetails.id }}"/>
-<ul>   {# if perms.Renter.change_renterinfo #}  
-     <li Title="Enter User name for renter it need to be unique" >Username:
-             <input name="RenterUsername" value="{{userdetails.username}}" /> <button disabled> Comming soon(Check Availability)</button>
-         </li>
-         <li Title="Enter Password for renter(He may change in future)" >Password:
-             <input name="RenterPassword" value="" type="password" /> 
-         </li>
-         <li Title="Enter email id of renter" >Email:
-             <input name="RenterEmailid" value="{{userdetails.email}}" type="email"/> 
-         </li> 
-      {# endif #}   
-<li Title="Full name of renter" >Name:
-             <input name="RenterName" value="{{renterinfo.full_name}}" /> 
-         </li>
-          <li Title="Previous Address of renter" >Previous Address: 
-            <input name="RenterPreviousAdd" value="{{renterinfo.previous_address}}" />
-         </li>
-        <li Title="Depsoit By renter" >Deposit Submited:
-            <input name="RenterDeposit" value="{{renterinfo.deposit_by_renter}}" />
-        </li>
-        <li Title="Rent Amount paied by {{renterinfo.full_name}}" >Rent Amount(per month):
-           <input name="RenterMonthrent" value="{{renterinfo.rent_amount}}" /></li>
-        <li Title="Agreement Started for {{renterinfo.full_name}}" >Agreement Started: 
-           <span id ='sandbox-container' class="input-append date">
-              <input type="text" name="Start_Rent_Date"  value="{{renterinfo.start_rent_date}}" class="span2"/>
-              <span class="add-on"><i class="icon-th"></i></span>
-           </span> </li>
-        <li Title="Agreement End for {{renterinfo.full_name}}" >Agreement End:
-           <span id ='sandbox-container' class="input-append date">
-              <input type="text" name="End_Rent_Date"  value=" {{renterinfo.end_rent_date}}" class="span2"/>
-              <span class="add-on"><i class="icon-th"></i></span>
-           </span> </li>
-<input type="submit" value="Sumbit" /></form>
+<ul>
+ {# if perms.Renter.change_renterinfo #}  
+    <div class="input-group" Title="Enter User name for renter it need to be unique" >
+	  <span class="input-group-addon" id="sizing-addon2">Username:</span>
+	  <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2" name="RenterUsername" value="{{userdetails.username}}">
+	  <span class="input-group-btn">
+        <button class="btn btn-default" type="button"> Comming soon(Check Availability)</button>
+      </span>
+	</div>
+	<br/>
+	<div class="input-group" Title="Enter Password for {{renterinfo.full_name}}(He may change in future)">
+	  <span class="input-group-addon" id="sizing-addon2">Password:</span>
+	  <input type="password" class="form-control" placeholder="password" aria-describedby="sizing-addon2" name="RenterPassword" value="" type="password">
+	</div>
+	<br/>
+	<div class="input-group" Title="Enter email id of {{renterinfo.full_name}}" >
+	  <span class="input-group-addon" id="sizing-addon2">Email:</span>
+	  <input name="RenterEmailid" value="{{userdetails.email}}" type="email" class="form-control" placeholder="email" aria-describedby="sizing-addon2">
+	</div> 
+      {# endif #}  
+    <br/>
+	<div class="input-group" Title="Full name of renter"  >
+	  <span class="input-group-addon" id="sizing-addon2">Name:</span>
+	  <input name="RenterName" value="{{renterinfo.full_name}}" type="text" class="form-control" placeholder="Full name" aria-describedby="sizing-addon2">
+	</div>    
+	<br/>
+	<div class="input-group" Title="Previous Address of {{renterinfo.full_name}}"  >
+	  <span class="input-group-addon" id="sizing-addon2">Previous Address:</span>
+	  <input name="RenterPreviousAdd" value="{{renterinfo.previous_address}}" type="text" class="form-control" placeholder="Previous Address" aria-describedby="sizing-addon2">
+	</div> 
+	<br/>
+	<div class="input-group" Title="Amount Depsoit By {{renterinfo.full_name}}"  >
+	  <span class="input-group-addon" id="sizing-addon2">Deposit Submited:</span>
+	  <input name="RenterDeposit" value="{{renterinfo.deposit_by_renter}}" type="number" class="form-control" placeholder="Amount Depsoit" aria-describedby="sizing-addon2">
+	</div>
+	<br/>
+	<div class="input-group" Title="Rent Amount paied by {{renterinfo.full_name}}"  >
+	  <span class="input-group-addon" id="sizing-addon2">Rent Amount(per month):</span>
+	  <input name="RenterMonthrent" value="{{renterinfo.rent_amount}}" type="number" class="form-control" placeholder="Rent Amount(per month)" aria-describedby="sizing-addon2">
+	</div>
+	
+	<br/>
+	<div class="input-group input-daterange">
+		<span class="input-group-addon" id="sizing-addon2">Agreement Started: </span>
+	    	<input data-date-format="yyyy-mm-dd" data-provide="datepicker" name="Start_Rent_Date"  value="{{renterinfo.start_rent_date}}" type="text" class="span2 form-control" placeholder=""Agreement Start for {{renterinfo.full_name}}"" aria-describedby="sizing-addon2">
+	    <span class="input-group-addon" style="padding-right: 8px;background-color: #C7C7C7;">to</span>
+	    <span class="input-group-addon" id="sizing-addon2">Agreement End: </span>
+	    	<input data-date-format="yyyy-mm-dd" data-provide="datepicker" name="End_Rent_Date"  value=" {{renterinfo.end_rent_date}}" type="text" class="span2 form-control" placeholder=""Agreement End for {{renterinfo.full_name}}"" aria-describedby="sizing-addon2">
+    </div>
+</ul>       
+<input type="submit" value="Sumbit" id="rentsubmitbutton"/></form>
+<div style="height:50px;">
+</div>
 {% endblock %}
