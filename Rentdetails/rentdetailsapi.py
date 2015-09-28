@@ -3,6 +3,8 @@ from tastypie import fields
 from Rentdetails.models import RentDetails 
 from houseowner.houserentapi import HouseownerResource
 from Renter.renterapi import RenterResource
+from tastypie.authentication import BasicAuthentication
+from tastypie.authorization import DjangoAuthorization
 
 class RentDetailsResource(ModelResource):
     HOID = fields.ForeignKey(HouseownerResource, 'HOID', full=True)
@@ -10,5 +12,6 @@ class RentDetailsResource(ModelResource):
     class Meta:
         queryset = RentDetails.objects.all()
         resource_name = 'rentdetails'
-        
+        authentication = BasicAuthentication()
+        authorization = DjangoAuthorization()
         

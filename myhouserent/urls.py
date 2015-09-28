@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
+# Django testypie version 2
 from tastypie.api import Api
 from houseowner.houserentapi import HouseownerResource, UserResource
 from Renter.renterapi import RenterResource
@@ -13,6 +14,7 @@ v2_api.register(UserResource())
 v2_api.register(HouseownerResource())
 v2_api.register(RenterResource())
 v2_api.register(RentDetailsResource())
+# Django testypie version 2
 
 urlpatterns = patterns('',
     # Examples:
@@ -23,7 +25,7 @@ urlpatterns = patterns('',
     url(r'^renterinfo/', include('Renter.urls', namespace="Renter")), 
     url(r'^rentdetails/', include('Rentdetails.urls', namespace="Rentdetails")), 
     url(r'^admin/', include(admin.site.urls)),
-    (r'^api/', include(v2_api.urls)),
+    (r'^api/', include(v2_api.urls)), # Django testypie version 2
 )
 
 urlpatterns += patterns('',

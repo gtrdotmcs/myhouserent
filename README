@@ -9,9 +9,7 @@ git demo and try hand on it
 http://try.github.io/
 
 # for testipy test after running code use this to test:
-http://hostname/houseowner/houseownerapi/houseowner/?format=json
-
-http://hostname/renterinfo/renterapi/renter/?format=json
+http://127.0.0.1:8000/api/v2/houseowner/  # basic authentication is there
 
 # some help
 https://djangoblog.cz/2014/01/05/foreign-key-related-models-in-django-tastypie-api.html
