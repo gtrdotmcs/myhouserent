@@ -18,6 +18,7 @@
   
 </div>
 {% endif %}
+{% if user.is_authenticated and perms.Rentdetails.change_rentdetails and perms.Rentdetails.delete_rentdetails %}
 <div class="panel-group" id="accordion">
 {% for renter in houseowner.renterinfo_set.all %}
   <div class="panel panel-default">
@@ -41,8 +42,10 @@
     </div>
     </div>
 {% endfor %}
+
 </div>
 {% if houseowner.No_of_renters > houseowner.renterinfo_set.all|length %}  
     <a href="{% url 'Renter:addrenterinfo' houseowner.id %}">+ ADD</a>
 {% endif %}    
+{% endif %}
 {% endblock %}
