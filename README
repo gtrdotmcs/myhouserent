@@ -13,3 +13,11 @@ http://127.0.0.1:8000/api/v2/houseowner/  # basic authentication is there
 
 # some help
 https://djangoblog.cz/2014/01/05/foreign-key-related-models-in-django-tastypie-api.html
+
+# heroku push # in .git/config file
+[remote "heroku"]
+	url = https://git.heroku.com/myrentmang.git
+	fetch = +refs/heads/*:refs/remotes/heroku/*
+[branch "master"]
+	remote = heroku
+	merge = refs/heads/master
