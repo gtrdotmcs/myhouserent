@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myhouserent.settings")
 
-#''' RunLocaly Comment and  Uncomment Run Heroku(Do not change this comment line)
+''' RunLocaly Comment and  Uncomment Run Heroku(Do not change this comment line)
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 

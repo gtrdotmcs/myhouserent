@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'myhouserent.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-#'''
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -92,7 +92,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-# ' ' '
+#'''
 # on heroku deployment set this uncomment upper comment it
 DATABASES = {
     'default': {
@@ -123,7 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-#STATIC_ROOT = os.path.join(BASE_DIR, os.path.join("myhouserent","static"))
+STATIC_ROOT = os.path.join(BASE_DIR, os.path.join("myhouserent","static"))
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -131,7 +131,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, os.path.join("myhouserent","static")),
+    #os.path.join(BASE_DIR, os.path.join("myhouserent","static")),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -141,7 +141,7 @@ STATICFILES_DIRS = (
 '''
 To run on local need to comment below part
 '''
-''' Run setting for heroku comment it and localy uncomment it
+#''' Run setting for heroku comment it and localy uncomment it
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
