@@ -96,13 +96,6 @@ DATABASES = {
 # on heroku deployment set this uncomment upper comment it
 DATABASES = {
     'default': {
-        
-        'ENGINE':'ec2-54-235-250-41.compute-1.amazonaws.com',
-        'NAME': 'd8ssbeatuknaab',
-        'USER': 'tsxexnwfaayznp',
-        'PASSWORD': 'lxpR73-9ttEpwZzbXujAgrEKIt',
-        #'HOST': '127.0.0.1',
-        'PORT': '5432',
     }
 }
 #'''
