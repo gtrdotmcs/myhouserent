@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Rent Management Portal</title>
+    <link rel="stylesheet" href="/static/rentals/css/style.css">
+</head>
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="logo">RentPortal</div>
+            <button id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
+            <ul id="nav-links">
+                <li class="auth-only"><a href="#" data-section="dashboard">Dashboard</a></li>
+                <li class="auth-only owner-only"><a href="#" data-section="properties">Properties</a></li>
+                <li class="auth-only owner-only"><a href="#" data-section="tenants">Tenants</a></li>
+                <li class="auth-only"><a href="#" data-section="payments">Payments</a></li>
+                <li class="auth-only"><a href="#" id="logout-btn">Logout</a></li>
+                <li class="guest-only"><a href="#" data-section="login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="app">
+        <!-- Content will be injected here -->
+        <section id="login-section" class="section">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p id="login-error" class="error"></p>
+        </section>
+
+        <section id="dashboard-section" class="section hidden">
+            <h2>Dashboard</h2>
+            <div id="user-info"></div>
+            <div class="stats-container">
+                <!-- Stats cards will be injected here -->
+            </div>
+        </section>
+
+        <section id="properties-section" class="section hidden">
+            <div class="section-header">
+                <h2>Properties</h2>
+                <button id="add-property-btn" class="owner-only">Add Property</button>
+            </div>
+            <div id="properties-list" class="card-grid"></div>
+        </section>
+
+        <section id="tenants-section" class="section hidden">
+            <div class="section-header">
+                <h2>Tenants & Agreements</h2>
+                <button id="add-tenant-btn" class="owner-only">Add Tenant/Agreement</button>
+            </div>
+            <div id="tenants-list" class="card-grid"></div>
+        </section>
+
+        <section id="payments-section" class="section hidden">
+            <h2>Rent Payments</h2>
+            <div id="payments-list" class="table-container">
+                <table id="payments-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Modals -->
+        <div id="modal-container" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/rentals/js/api.js"></script>
+    <script src="/static/rentals/js/app.js"></script>
+</body>
+</html>
