@@ -88,6 +88,8 @@ class RentPaymentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         user = self.request.user
+        if not user.is_authenticated:
+            return RentPayment.objects.none()
         if user.is_superuser:
             return RentPayment.objects.all()
         if user.role == 'OWNER':
@@ -98,8 +100,11 @@ class RentPaymentViewSet(viewsets.ModelViewSet):
     def approve(self, request, pk=None):
         payment = self.get_object()
         payment.is_approved = True
+        payment.is_paid = True
+        if not payment.paid_date:
+            payment.paid_date = datetime.date.today()
         payment.save()
-        return Response({'status': 'payment approved'})
+        return Response({'status': 'payment approved and marked as paid'})
 
     @action(detail=True, methods=['post'])
     def pay(self, request, pk=None):
@@ -107,7 +112,7 @@ class RentPaymentViewSet(viewsets.ModelViewSet):
         if request.user != payment.agreement.tenant and not request.user.is_superuser:
             return Response({'error': 'Not authorized'}, status=status.HTTP_403_FORBIDDEN)
         
-        payment.is_paid = True
-        payment.paid_date = datetime.date.today()
+        payment.is_submitted = True
+        payment.payment_details = request.data.get('payment_details', '')
         payment.save()
-        return Response({'status': 'payment sent for approval'})
+        return Response({'status': 'payment details submitted for approval'})

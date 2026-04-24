@@ -109,6 +109,11 @@ const API = {
     createAgreement(data) { return this.request('/agreements/', { method: 'POST', body: JSON.stringify(data) }); },
 
     getPayments() { return this.request('/payments/'); },
-    payRent(paymentId) { return this.request(`/payments/${paymentId}/pay/`, { method: 'POST' }); },
+    payRent(paymentId, paymentDetails) {
+        return this.request(`/payments/${paymentId}/pay/`, {
+            method: 'POST',
+            body: JSON.stringify({ payment_details: paymentDetails })
+        });
+    },
     approvePayment(paymentId) { return this.request(`/payments/${paymentId}/approve/`, { method: 'POST' }); }
 };

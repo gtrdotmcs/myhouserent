@@ -163,19 +163,23 @@ document.addEventListener('DOMContentLoaded', () => {
         tbody.innerHTML = '<tr><td colspan="4">Loading...</td></tr>';
         try {
             const payments = await API.getPayments();
+            console.log('Payments loaded:', payments);
             tbody.innerHTML = payments.map(p => `
                 <tr>
-                    <td>${p.month}</td>
+                    <td>
+                        ${p.month}
+                        ${p.payment_details ? `<br><small style="color: #666">Details: ${p.payment_details}</small>` : ''}
+                    </td>
                     <td>$${p.amount}</td>
                     <td>
-                        ${p.is_approved ? '<span class="status-approved">Approved</span>' :
-                          p.is_paid ? '<span class="status-paid">Paid (Pending Approval)</span>' :
-                          '<span class="status-pending">Unpaid</span>'}
+                        ${p.is_approved ? '<span class="status-approved" style="color: var(--success-color)">Paid & Approved</span>' :
+                          p.is_submitted ? '<span class="status-paid" style="color: var(--secondary-color)">Submitted (Pending Approval)</span>' :
+                          '<span class="status-pending" style="color: var(--accent-color)">Unpaid</span>'}
                     </td>
                     <td>
-                        ${state.user.role === 'TENANT' && !p.is_paid ?
-                            `<button class="pay-btn" data-id="${p.id}">Pay Now</button>` : ''}
-                        ${(state.user.role === 'OWNER' || state.user.role === 'SUPERUSER') && p.is_paid && !p.is_approved ?
+                        ${state.user.role === 'TENANT' && !p.is_submitted ?
+                            `<button class="pay-btn" data-id="${p.id}">Submit Payment</button>` : ''}
+                        ${(state.user.role === 'OWNER' || state.user.role === 'SUPERUSER') && p.is_submitted && !p.is_approved ?
                             `<button class="approve-btn" data-id="${p.id}">Approve</button>` : ''}
                     </td>
                 </tr>
@@ -184,8 +188,24 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.pay-btn').forEach(btn => {
                 btn.addEventListener('click', async (e) => {
                     const id = e.target.dataset.id;
-                    await API.payRent(id);
-                    renderPayments();
+                    showModal(`
+                        <h3>Submit Payment Details</h3>
+                        <p>Please enter payment reference (e.g., Transaction ID, Bank Ref).</p>
+                        <form id="submit-payment-form">
+                            <div class="form-group">
+                                <textarea name="payment_details" placeholder="Enter transaction details here..." required></textarea>
+                            </div>
+                            <button type="submit">Submit to Owner</button>
+                        </form>
+                    `);
+
+                    document.getElementById('submit-payment-form').addEventListener('submit', async (formEv) => {
+                        formEv.preventDefault();
+                        const details = formEv.target.payment_details.value;
+                        await API.payRent(id, details);
+                        modal.classList.add('hidden');
+                        renderPayments();
+                    });
                 });
             });
 

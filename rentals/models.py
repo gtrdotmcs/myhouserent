@@ -38,6 +38,8 @@ class RentPayment(models.Model):
     agreement = models.ForeignKey(RentalAgreement, on_delete=models.CASCADE, related_name='payments')
     month = models.DateField(help_text="First day of the month for which rent is being paid")
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    is_submitted = models.BooleanField(default=False, help_text="Submitted by tenant")
+    payment_details = models.TextField(blank=True, help_text="Details like Transaction ID, etc.")
     is_paid = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False, help_text="Approved by owner")
     paid_date = models.DateField(null=True, blank=True)
