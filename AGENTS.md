@@ -34,6 +34,7 @@ The `verify_api.py` script is the primary tool for verifying role-based visibili
 - Keep business logic in `views.py` or separate service layers if they grow complex.
 - Ensure all new endpoints respect the visibility rules implemented in `get_queryset`.
 - Use the custom permissions defined in `rentals/permissions.py`.
+- **Never commit `.pyc` files or `__pycache__` directories.** Ensure they are excluded via `.gitignore`.
 
 ## Programmatic Checks
 When making changes to the models or views, you **MUST** run the verification script to ensure no regressions in the visibility logic:
