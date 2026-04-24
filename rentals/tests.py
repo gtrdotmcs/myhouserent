@@ -66,10 +66,11 @@ class RentalSystemTests(TestCase):
     def test_payment_actions(self):
         # Tenant1 pays rent
         self.client.force_authenticate(user=self.tenant1)
-        response = self.client.post(reverse('rentpayment-pay', args=[self.payment1.id]))
+        response = self.client.post(reverse('rentpayment-pay', args=[self.payment1.id]), {'payment_details': 'Ref 123'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.payment1.refresh_from_db()
-        self.assertTrue(self.payment1.is_paid)
+        self.assertTrue(self.payment1.is_submitted)
+        self.assertEqual(self.payment1.payment_details, 'Ref 123')
 
         # Owner1 approves rent
         self.client.force_authenticate(user=self.owner1)

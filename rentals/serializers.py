@@ -32,5 +32,5 @@ class RentPaymentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = RentPayment
-        fields = ['id', 'agreement', 'agreement_details', 'month', 'amount', 'is_paid', 'is_approved', 'paid_date']
-        read_only_fields = ['is_approved']
+        fields = ['id', 'agreement', 'agreement_details', 'month', 'amount', 'is_submitted', 'payment_details', 'is_paid', 'is_approved', 'paid_date']
+        read_only_fields = ['is_approved', 'is_paid', 'paid_date', 'is_submitted']
