@@ -64,6 +64,8 @@ class RentPaymentViewSet(viewsets.ModelViewSet):
     serializer_class = RentPaymentSerializer
 
     def get_permissions(self):
+        if self.action == 'approve':
+            return [IsOwnerOrAdmin()]
         return [permissions.IsAuthenticated()]
 
     def get_queryset(self):
