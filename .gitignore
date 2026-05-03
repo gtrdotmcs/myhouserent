@@ -3,3 +3,4 @@ __pycache__/
 *$py.class
 db.sqlite3
 .DS_Store
+.venvpy3.14

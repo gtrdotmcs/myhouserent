@@ -2,7 +2,7 @@
 
 ## Task List
 
-- [ ] 1. Verify existing core functionality
+- [-] 1. Verify existing core functionality
   - [ ] 1.1 Run verify_api.py to confirm baseline visibility logic passes for all roles
   - [ ] 1.2 Review rentals/tests.py and add missing unit tests for authentication (session, basic auth, unauthenticated → 403)
   - [ ] 1.3 Add unit tests for user management: superuser creates user, non-superuser gets 403, password not exposed in response

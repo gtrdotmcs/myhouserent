@@ -20,6 +20,7 @@ Visibility rules are enforced in the `get_queryset` methods of the ViewSets:
 ### Actions
 - `RentPaymentViewSet.pay()`: Allows a tenant to mark a payment as paid.
 - `RentPaymentViewSet.approve()`: Allows an owner (or admin) to approve a payment. This field is read-only in the main serializer to prevent tenants from approving their own payments via standard PUT/PATCH requests.
+- **Settings:** The core configuration for the project is managed in `house_rent_project/settings.py`.
 
 ## Development & Verification
 
